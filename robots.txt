@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alejillo8405.github.io/epk-thedjslett/sitemap.xml

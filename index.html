@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheDJSlett | Hardstyle DJ & Producer Medellín</title>
+    <meta name="description" content="TheDJSlett: DJ y Productor de Hardstyle en Medellín. Escucha mi discografía, descarga mi Rider Técnico y gestiona bookings oficiales.">
+    <meta name="keywords" content="TheDJSlett, Hardstyle Medellín, DJ Hardstyle Colombia, Productor Harddance, EPK DJ">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="logo.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Open Graph / redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TheDJSlett | Hardstyle DJ & Producer Medellín">
+    <meta property="og:description" content="DJ y Productor de Hardstyle en Medellín. Escucha mi discografía, descarga mi Rider Técnico y gestiona bookings oficiales.">
+    <meta property="og:image" content="https://alejillo8405.github.io/epk-thedjslett/og-image.jpg">
+    <meta property="og:url" content="https://alejillo8405.github.io/epk-thedjslett/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TheDJSlett | Hardstyle DJ & Producer Medellín">
+    <meta name="twitter:description" content="DJ y Productor de Hardstyle en Medellín. Escucha mi discografía, descarga mi Rider Técnico y gestiona bookings oficiales.">
+    <meta name="twitter:image" content="https://alejillo8405.github.io/epk-thedjslett/og-image.jpg">
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://alejillo8405.github.io/epk-thedjslett/">
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SKWEB7LRPF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SKWEB7LRPF');
+    </script>
+
+    <!-- Datos estructurados para buscadores -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "TheDJSlett",
+        "genre": "Hardstyle",
+        "url": "https://alejillo8405.github.io/epk-thedjslett/",
+        "image": "https://alejillo8405.github.io/epk-thedjslett/og-image.jpg",
+        "sameAs": [
+            "https://open.spotify.com/intl-es/artist/2dsFFDlP0HN09zODqQqfem",
+            "https://www.instagram.com/thedjslett",
+            "https://youtube.com/@thedjslett"
+        ]
+    }
+    </script>
+    <style>
+        :root {
+            --neon-lime: #32ff00;
+            --dark-bg: #050505;
+            --card-bg: #111111;
+            --text-gray: #cccccc;
+            --terminal-green: #1aed02;
+            --input-bg: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+       /* HERO SECTION CORREGIDA */
+        .hero { 
+            padding: 80px 20px; 
+            border-bottom: 2px solid #111;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            display: flex; /* Activa el alineamiento flexible */
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra todo horizontalmente */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Rayos de luz animados de fondo */
+        .hero > .light-beam {
+            position: absolute;
+            top: -30%;
+            width: 6px;
+            height: 180%;
+            background: linear-gradient(to bottom, transparent, rgba(80,255,40,0.75), rgba(50,255,0,0.95), rgba(80,255,40,0.75), transparent);
+            filter: blur(1.5px) drop-shadow(0 0 12px rgba(50,255,0,0.9));
+            transform: rotate(15deg);
+            pointer-events: none;
+            z-index: 0;
+            animation: beamSweep 9s ease-in-out infinite;
+        }
+        .light-beam.beam-2 { animation-delay: -3s; animation-duration: 12s; opacity: 0.85; }
+        .light-beam.beam-3 { animation-delay: -6s; animation-duration: 7s; opacity: 0.7; }
+        @keyframes beamSweep {
+            0%   { left: -10%; }
+            50%  { left: 105%; }
+            100% { left: -10%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .light-beam { animation: none; display: none; }
+        }
+
+        .hero > * { position: relative; z-index: 1; }
+
+        .hero img {
+            width: 160px;
+            height: 160px;
+            filter: drop-shadow(0 0 20px var(--neon-lime));
+            border-radius: 50%;
+            border: 2px solid var(--neon-lime);
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            animation: logoGlowPulse 3s ease-in-out infinite;
+        }
+        @keyframes logoGlowPulse {
+            0%, 100% { filter: drop-shadow(0 0 14px var(--neon-lime)); }
+            50%      { filter: drop-shadow(0 0 34px var(--neon-lime)); }
+        }
+
+        /* Titulo con glitch ocasional */
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 15px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            animation: titleGlitch 4.5s linear infinite;
+        }
+        @keyframes titleGlitch {
+            0%, 88%, 100% {
+                transform: translate(0, 0);
+                text-shadow: none;
+                opacity: 1;
+            }
+            88.3% {
+                transform: translate(-1px, 0);
+                text-shadow: 3px 0 var(--neon-lime), -3px 0 #ff2d55;
+                opacity: 0.35;
+            }
+            88.6% {
+                transform: translate(1px, 0);
+                text-shadow: -3px 0 var(--neon-lime), 3px 0 #ff2d55;
+                opacity: 1;
+            }
+            89% {
+                transform: translate(0, 0);
+                text-shadow: none;
+                opacity: 1;
+            }
+            91% {
+                transform: translate(1px, 0);
+                text-shadow: -2px 0 var(--neon-lime), 2px 0 #ff2d55;
+                opacity: 0.4;
+            }
+            91.3% {
+                transform: translate(-1px, 0);
+                text-shadow: 2px 0 var(--neon-lime), -2px 0 #ff2d55;
+                opacity: 1;
+            }
+            91.6%, 100% {
+                transform: translate(0, 0);
+                text-shadow: none;
+                opacity: 1;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero img, .hero h1 { animation: none; }
+        }
+
+        .hero p { color: var(--neon-lime); font-weight: bold; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 25px; }
+
+        .social-proof { 
+            color: var(--text-gray); 
+            margin: 10px 0; 
+            font-size: 0.95rem; 
+            opacity: 0.8; 
+        }
+        
+        .btn-booking {
+            display: inline-block;
+            background: var(--neon-lime);
+            color: black;
+            padding: 14px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 10px 0 20px 0;
+            transition: 0.3s;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            animation: btnGlowPulse 2.6s ease-in-out infinite;
+        }
+        @keyframes btnGlowPulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(50,255,0,0.35); }
+            50%      { box-shadow: 0 0 22px rgba(50,255,0,0.75); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .btn-booking { animation: none; }
+        }
+        .btn-booking:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--neon-lime); }
+
+        .social-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .social-links a {
+            color: var(--neon-lime);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border: 1px solid var(--neon-lime);
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .social-links a:hover { background: var(--neon-lime); color: black; }
+
+        .lang-toggle { display: flex; gap: 8px; }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 5px 14px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-btn.active-lang { border-color: var(--neon-lime); color: var(--neon-lime); }
+
+        .show-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: var(--input-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--neon-lime);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .show-card .show-date {
+            color: var(--neon-lime);
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            min-width: 120px;
+        }
+        .show-card .show-info { flex: 1; min-width: 180px; }
+        .show-card .show-city { color: white; font-weight: bold; }
+        .show-card .show-venue { color: var(--text-gray); font-size: 0.9rem; }
+        .show-card .show-link {
+            color: black;
+            background: var(--neon-lime);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .home-card,
+        .card.home-card {
+            position: relative;
+            background-image: linear-gradient(rgba(5,5,5,0.55), rgba(5,5,5,0.75)), url('press-energia-bg.jpg');
+            background-size: cover;
+            background-position: center 15%;
+        }
+
+        .press-photo {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            border: 1px solid var(--neon-lime);
+            box-shadow: 0 0 25px rgba(50,255,0,0.25);
+            display: block;
+            margin: 0 auto 25px auto;
+        }
+
+        /* Logros y trayectoria */
+        .achievement {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 22px 0;
+            border-bottom: 1px solid #222;
+        }
+        .achievement:last-child { border-bottom: none; }
+        .achievement-badge {
+            flex-shrink: 0;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(50,255,0,0.08);
+            border: 2px solid var(--neon-lime);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 0 15px rgba(50,255,0,0.3);
+        }
+        .achievement-body h3 {
+            color: var(--neon-lime);
+            font-size: 1.1rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+        .achievement-body p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin: 0 0 10px 0;
+        }
+        .achievement-quote {
+            font-style: italic;
+            border-left: 2px solid var(--neon-lime);
+            padding-left: 14px;
+            color: #fff !important;
+        }
+        @media (max-width: 500px) {
+            .achievement { flex-direction: column; align-items: center; text-align: center; }
+        }
+
+        /* WhatsApp Flotante */
+        .wpp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 2000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav {
+            background: rgba(0,0,0,0.95);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+            flex-wrap: wrap;
+        }
+        nav button {
+            margin: 5px;
+            background: transparent;
+            color: #888;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+        nav button.active-btn { color: var(--neon-lime); border-bottom: 2px solid var(--neon-lime); }
+
+        .tab {
+            display: none;
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: tabEnter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes tabEnter {
+            0%   { opacity: 0; transform: translateY(45px) scale(0.94); filter: blur(14px); }
+            55%  { opacity: 1; filter: blur(2px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .tab { animation: none; }
+        }
+
+        /* Ecualizador animado */
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            height: 50px;
+            margin: 20px auto;
+        }
+        .equalizer span {
+            display: block;
+            width: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to top, var(--neon-lime), #a8ffa0);
+            box-shadow: 0 0 8px rgba(50,255,0,0.6);
+            animation: eqBounce 1.2s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+        .equalizer span:nth-child(1) { height: 35%; animation-delay: -1.1s; }
+        .equalizer span:nth-child(2) { height: 65%; animation-delay: -0.9s; }
+        .equalizer span:nth-child(3) { height: 90%; animation-delay: -0.7s; }
+        .equalizer span:nth-child(4) { height: 50%; animation-delay: -0.5s; }
+        .equalizer span:nth-child(5) { height: 80%; animation-delay: -0.3s; }
+        .equalizer span:nth-child(6) { height: 45%; animation-delay: -0.15s; }
+        .equalizer span:nth-child(7) { height: 70%; animation-delay: 0s; }
+        @keyframes eqBounce {
+            0%, 100% { transform: scaleY(0.35); }
+            50%      { transform: scaleY(1); }
+        }
+        .equalizer.boost span { animation-duration: 0.35s; }
+        @media (prefers-reduced-motion: reduce) {
+            .equalizer span { animation: none; transform: scaleY(0.7); }
+        }
+
+        .card {
+            background: rgba(15,15,15,0.42);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(50,255,0,0.18);
+            text-align: left;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+            .card { background: rgba(15,15,15,0.88); }
+        }
+        .card h2 { color: var(--neon-lime); text-transform: uppercase; border-left: 4px solid var(--neon-lime); padding-left: 15px; margin-bottom: 25px; }
+
+        /* RIDER & BIO */
+        .rider-list { list-style: none; padding: 0; }
+        .rider-list li { margin-bottom: 12px; padding-left: 30px; position: relative; color: var(--text-gray); }
+        .rider-list li::before { content: '⚡'; position: absolute; left: 0; color: var(--neon-lime); }
+
+        /* FORMULARIO */
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 0.8rem; text-transform: uppercase; color: var(--neon-lime); font-weight: bold; }
+        .form-group input, .form-group textarea {
+            background: var(--input-bg);
+            border: 1px solid #333;
+            padding: 15px;
+            color: white;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .btn-send {
+            background: var(--neon-lime);
+            color: black;
+            border: none;
+            padding: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-send:hover { box-shadow: 0 0 20px var(--neon-lime); letter-spacing: 1px; }
+
+        /* JUEGO */
+        #gameCanvas { background: #000; border: 2px solid var(--neon-lime); display: block; margin: 20px auto; max-width: 100%; border-radius: 12px; }
+        #scoreContainer { margin-bottom: 15px; font-family: monospace; font-size: 1.5rem; color: var(--neon-lime); }
+        #dropBtn {
+            display: block;
+            margin: 30px auto;
+            background: transparent;
+            color: var(--neon-lime);
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid var(--neon-lime);
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        footer { padding: 60px 40px; color: #333; font-size: 0.75rem; border-top: 1px solid #111; }
+
+        /* Fondo global: lluvia + rayos neon (fijo detras de todo el sitio) */
+        body { position: relative; }
+        #rainFX {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            background: var(--dark-bg) url('city-skyline-bg.jpg') no-repeat center bottom;
+            background-size: cover;
+        }
+        #rainFX .drop {
+            position: absolute;
+            top: -10%;
+            width: 1.5px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(60,255,50,0.55));
+            animation-name: rainFall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        @keyframes rainFall {
+            0%   { transform: translateY(-10vh); opacity: 0.8; }
+            100% { transform: translateY(115vh); opacity: 0.4; }
+        }
+        #rainFX .lightning {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 0%, rgba(150,255,120,0.35), transparent 60%);
+            opacity: 0;
+            animation: lightningFlash 11s ease-in-out infinite;
+        }
+        #rainFX .lightning.bolt-2 {
+            background: radial-gradient(ellipse at 75% 10%, rgba(120,255,90,0.3), transparent 55%);
+            animation-duration: 16s;
+            animation-delay: -5s;
+        }
+        @keyframes lightningFlash {
+            0%, 41%, 43%, 100% { opacity: 0; }
+            41.5% { opacity: 0.9; }
+            42%   { opacity: 0.2; }
+            42.5% { opacity: 0.7; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #rainFX .drop, #rainFX .lightning { animation: none; display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="rainFX">
+    <div class="lightning"></div>
+    <div class="lightning bolt-2"></div>
+</div>
+
+<a href="https://wa.me/573194465702?text=Hola%20quiero%20informacion%20para%20booking%20de%20TheDJSlett" class="wpp-float" target="_blank" rel="noopener noreferrer" onclick="if(typeof gtag === 'function'){gtag('event', 'whatsapp_click');}">
+    <svg width="35" height="35" fill="white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<div class="hero">
+    <div class="light-beam"></div>
+    <div class="light-beam beam-2"></div>
+    <div class="light-beam beam-3"></div>
+    <img src="logo.webp" alt="TheDJSlett Logo"> 
+    <h1>TheDJSlett</h1>
+    <p>HARDSTYLE DJ / PRODUCER</p>
+    <span class="social-proof" data-i18n="hero.socialProof">26 Tracks publicados | Medellín Hardstyle Scene | CDJ Ready</span>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+        <button onclick="document.querySelector('[data-tab=contact]').click()" class="btn-booking" data-i18n="hero.bookingBtn">INICIAR BOOKING</button>
+        <button id="shareBtn" class="btn-booking" style="background:transparent; border:2px solid var(--neon-lime); color:var(--neon-lime);" data-i18n="hero.share">Compartir EPK</button>
+    </div>
+    <div class="social-links">
+        <a href="https://open.spotify.com/intl-es/artist/2dsFFDlP0HN09zODqQqfem" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a href="https://www.instagram.com/thedjslett" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://youtube.com/@thedjslett" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+    <div class="lang-toggle" style="margin-top:18px;">
+        <button id="langEs" class="lang-btn active-lang" data-lang="es">ES</button>
+        <button id="langEn" class="lang-btn" data-lang="en">EN</button>
+    </div>
+</div>
+
+<nav id="navbar">
+    <button data-tab="home" class="active-btn" data-i18n="nav.home">Inicio</button>
+    <button data-tab="music" data-i18n="nav.music">Música</button>
+    <button data-tab="media" data-i18n="nav.media">Media</button>
+    <button data-tab="shows" data-i18n="nav.shows">Shows</button>
+    <button data-tab="bio" data-i18n="nav.bio">Bio & Rider</button>
+    <button data-tab="logros" data-i18n="nav.logros">Logros</button>
+    <button data-tab="contact" data-i18n="nav.contact">Contacto</button>
+    <button data-tab="play" data-i18n="nav.play">Playground</button>
+</nav>
+
+<div id="home" class="tab active">
+    <div class="card home-card" style="text-align: center;">
+        <h2 data-i18n="home.title">System Check</h2>
+        <p style="color: var(--text-gray);" data-i18n="home.desc">Carga los sistemas de audio para el próximo Drop.</p>
+        <div id="equalizer" class="equalizer">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <button id="dropBtn" data-i18n="home.dropBtn">DISPARAR KICK</button>
+    </div>
+</div>
+
+<div id="music" class="tab">
+    <div class="card">
+        <h2 data-i18n="music.title">Discografía Oficial</h2>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" data-src="https://open.spotify.com/embed/artist/2dsFFDlP0HN09zODqQqfem?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+</div>
+
+<div id="media" class="tab">
+    <div class="card">
+        <h2>Visuals & Live Performances</h2>
+        <iframe width="100%" height="450" data-src="https://www.youtube.com/embed/cX31J616-Tc" frameborder="0" allowfullscreen style="border-radius: 12px; border: 1px solid #333;"></iframe>
+    </div>
+</div>
+
+<div id="shows" class="tab">
+    <div class="card" style="text-align:center;">
+        <h2 data-i18n="shows.title">Próximas Fechas</h2>
+        <div id="showsList" style="display:none; text-align:left; margin-top:20px;"></div>
+        <div id="showsEmpty">
+            <p style="color: var(--text-gray); font-size: 3rem; margin: 10px 0;">📅</p>
+            <p style="color: var(--text-gray); line-height: 1.8;" data-i18n="shows.desc">
+                Todavía no hay fechas confirmadas para publicar, pero estoy activamente disponible para bookings en Medellín, Colombia y para viajar. Escribime y armamos algo.
+            </p>
+        </div>
+        <button onclick="document.querySelector('[data-tab=contact]').click()" class="btn-booking" style="margin-top:15px;" data-i18n="shows.cta">CONSULTAR DISPONIBILIDAD</button>
+    </div>
+</div>
+
+<div id="bio" class="tab">
+    <div class="card">
+        <h2>The Artist</h2>
+        <img src="press-mood.jpg" alt="TheDJSlett en cabina" class="press-photo">
+        <p style="line-height: 1.8; color: var(--text-gray); font-style: italic; border-left: 2px solid var(--neon-lime); padding-left: 15px;" data-i18n="bio.quote">
+            "Sets diseñados para pista, energía sin concesiones y enfoque directo a festivales."
+        </p>
+        <p style="line-height: 1.8; color: var(--text-gray); margin-top: 20px;" data-i18n="bio.paragraph">
+            Originario de Envigado, TheDJSlett fusiona su formación como Ingeniero Electrónico en la IUE con la potencia del Harddance. Miembro de La Cantera Studios, su enfoque técnico garantiza una calidad sonora superior en cada drop.
+        </p>
+        <h2 style="margin-top: 40px;">Technical Rider</h2>
+        <ul class="rider-list">
+            <li data-i18n="bio.riderItem1">2x Pioneer CDJ-2000 NXS2 o superior</li>
+            <li data-i18n="bio.riderItem2">1x Pioneer DJM-900 NXS2 / DJM-V10</li>
+            <li data-i18n="bio.riderItem3">Monitoreo: 2 monitores activos de alta potencia</li>
+        </ul>
+
+        <h2 style="margin-top: 40px;" data-i18n="bio.bookingInfoTitle">Booking Info (Promotores)</h2>
+        <ul class="rider-list">
+            <li><strong data-i18n="bio.style">Estilo:</strong> Hardstyle / Rawstyle</li>
+            <li><strong data-i18n="bio.duration">Duración:</strong> <span data-i18n="bio.durationValue">60 - 90 Minutos</span></li>
+            <li><strong data-i18n="bio.location">Ubicación:</strong> Medellín, Colombia</li>
+            <li><strong data-i18n="bio.format">Formato:</strong> USB / CDJ Ready</li>
+        </ul>
+
+        <a href="rider-thedjslett.pdf" download class="btn-booking" style="display:inline-block; text-decoration:none;" data-i18n="bio.downloadRider">Descargar Rider Técnico (PDF)</a>
+    </div>
+</div>
+
+<div id="logros" class="tab">
+    <div class="card">
+        <h2 data-i18n="logros.title">Logros y Trayectoria</h2>
+
+        <div class="achievement">
+            <div class="achievement-badge">🥈</div>
+            <div class="achievement-body">
+                <h3 data-i18n="logros.remix.title">2do Lugar — Higher Place Remix Contest</h3>
+                <p data-i18n="logros.remix.desc">
+                    Entre remixes de productores de México, España y Colombia, mi versión de "Higher Place" obtuvo 7.8/10 de un panel de evaluación internacional, quedando en el 2do puesto general del concurso.
+                </p>
+                <p class="achievement-quote" data-i18n="logros.remix.quote">
+                    "Uno de los remixes con mejor criterio musical del concurso. Sound design consistente y superior al promedio."
+                </p>
+            </div>
+        </div>
+
+        <div class="achievement">
+            <div class="achievement-badge">🎓</div>
+            <div class="achievement-body">
+                <h3 data-i18n="logros.cantera.title">La Cantera — Mentoría con Bullnene y la Alcaldía de Envigado</h3>
+                <p data-i18n="logros.cantera.desc">
+                    Participé en La Cantera, el proyecto social y musical del productor René "Bullnene" Cano (J Balvin, Karol G, Maluma, Manuel Turizo, Juanes) junto a la Alcaldía de Envigado para descubrir y formar nuevo talento musical del municipio. Aunque no clasifiqué al álbum oficial del concurso, recibí mentoría directa de referentes de la industria musical de la región.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="tab">
+
+    <div class="card">
+        <h2>Booking & Inquiry</h2>
+        <form id="bookingForm" class="contact-form" action="https://formspree.io/f/mqewqywp" method="POST">
+            <div class="form-group">
+                <label for="bookingName" data-i18n="contact.name">Nombre / Promotora</label>
+                <input type="text" id="bookingName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="bookingEmail" data-i18n="contact.email">Correo Electrónico De Contacto</label>
+                <input type="email" id="bookingEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="bookingMessage" data-i18n="contact.message">Mensaje / Detalles del Evento</label>
+                <textarea id="bookingMessage" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-send" data-i18n="contact.submit">ENVIAR SOLICITUD</button>
+            <p id="formStatus" style="display:none; text-align:center; font-weight:bold; margin-top:10px;"></p>
+        </form>
+    </div>
+</div>
+
+<div id="play" class="tab">
+    <div class="card" style="text-align: center;">
+        <h2>Catch the Kick</h2>
+        <div id="scoreContainer">SCORE: <span id="gameScore">000</span></div>
+        <canvas id="gameCanvas" width="400" height="300"></canvas>
+    </div>
+</div>
+
+<footer>
+    © 2026 TheDJSlett. <span style="color: var(--terminal-green);">SYSTEM_READY</span> | Medellín, CO.
+</footer>
+
+<audio id="sfxDrop"><source src="drop.mp3" type="audio/mpeg"></audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // ---------- Lluvia de fondo (genera gotas con variacion aleatoria) ----------
+    const rainContainer = document.getElementById("rainFX");
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(rainContainer && !prefersReducedMotion) {
+        const dropCount = window.innerWidth < 600 ? 35 : 60;
+        for(let i = 0; i < dropCount; i++) {
+            const drop = document.createElement("div");
+            drop.className = "drop";
+            drop.style.left = (Math.random() * 100) + "%";
+            drop.style.height = (30 + Math.random() * 50) + "px";
+            drop.style.animationDuration = (0.6 + Math.random() * 0.9) + "s";
+            drop.style.animationDelay = (Math.random() * -2) + "s";
+            drop.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+            rainContainer.appendChild(drop);
+        }
+    }
+
+    const buttons = document.querySelectorAll("nav button");
+    const tabs = document.querySelectorAll(".tab");
+    const sfxDrop = document.getElementById("sfxDrop");
+
+    // ---------- Idioma ES/EN ----------
+    const translations = {
+        en: {
+            "nav.home": "Home",
+            "nav.music": "Music",
+            "nav.media": "Media",
+            "nav.shows": "Shows",
+            "nav.bio": "Bio & Rider",
+            "nav.logros": "Achievements",
+            "nav.contact": "Contact",
+            "nav.play": "Playground",
+            "shows.title": "Upcoming Dates",
+            "shows.desc": "No confirmed dates to publish yet, but I'm actively available for bookings in Medellín, Colombia and open to travel. Reach out and let's set something up.",
+            "shows.cta": "CHECK AVAILABILITY",
+            "hero.socialProof": "26 Tracks Released | Medellín Hardstyle Scene | CDJ Ready",
+            "hero.bookingBtn": "START BOOKING",
+            "hero.share": "Share EPK",
+            "home.title": "System Check",
+            "home.desc": "Load the audio systems for the next Drop.",
+            "home.dropBtn": "TRIGGER KICK",
+            "music.title": "Official Discography",
+            "bio.quote": "\"Sets built for the dancefloor, no-compromise energy, and a direct focus on festivals.\"",
+            "bio.paragraph": "Originally from Envigado, TheDJSlett blends his training as an Electronic Engineer at IUE with the power of Harddance. A member of La Cantera Studios, his technical approach guarantees superior sound quality on every drop.",
+            "bio.riderItem1": "2x Pioneer CDJ-2000 NXS2 or higher",
+            "bio.riderItem2": "1x Pioneer DJM-900 NXS2 / DJM-V10",
+            "bio.riderItem3": "Monitoring: 2 high-power active monitors",
+            "bio.bookingInfoTitle": "Booking Info (Promoters)",
+            "bio.style": "Style:",
+            "bio.duration": "Duration:",
+            "bio.durationValue": "60 - 90 Minutes",
+            "bio.location": "Location:",
+            "bio.format": "Format:",
+            "bio.downloadRider": "Download Technical Rider (PDF)",
+            "logros.title": "Achievements & Track Record",
+            "logros.remix.title": "2nd Place — Higher Place Remix Contest",
+            "logros.remix.desc": "Among remixes from producers in Mexico, Spain and Colombia, my version of \"Higher Place\" scored 7.8/10 from an international judging panel, placing 2nd overall in the contest.",
+            "logros.remix.quote": "\"One of the remixes with the best musical judgment in the contest. Consistent sound design, above the contest average.\"",
+            "logros.cantera.title": "La Cantera — Mentorship with Bullnene and the Envigado City Government",
+            "logros.cantera.desc": "I took part in La Cantera, the social and musical project by producer René \"Bullnene\" Cano (J Balvin, Karol G, Maluma, Manuel Turizo, Juanes) together with the Envigado city government, aimed at discovering and training new musical talent from the municipality. While I didn't make the contest's official album, I received direct mentorship from leading names in the region's music industry.",
+            "contact.name": "Name / Promoter",
+            "contact.email": "Contact Email",
+            "contact.message": "Message / Event Details",
+            "contact.submit": "SEND REQUEST"
+        }
+    };
+
+    const originalEs = {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        originalEs[el.getAttribute("data-i18n")] = el.textContent;
+    });
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            const text = lang === "en" ? (translations.en[key] || originalEs[key]) : originalEs[key];
+            el.textContent = text;
+        });
+        document.getElementById("langEs").classList.toggle("active-lang", lang === "es");
+        document.getElementById("langEn").classList.toggle("active-lang", lang === "en");
+        localStorage.setItem("thedjslett_lang", lang);
+        if(typeof gtag === 'function') {
+            gtag('event', 'language_change', { language: lang });
+        }
+        loadShows();
+    }
+
+    document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
+    document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
+
+    const savedLang = localStorage.getItem("thedjslett_lang");
+    if(savedLang === "en") setLanguage("en");
+
+    // ---------- Próximos Shows (Google Sheet publicada como CSV) ----------
+    const SHOWS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_GCExiPDsscD-1umhyqqSibtk2q0IEKcfsMBlo1wogHJ9j_XQ3HKKjw2FIuISsxxtuaRIeTWP5kxg/pub?gid=0&single=true&output=csv";
+
+    function loadShows() {
+        if(typeof Papa === 'undefined') return;
+        const cacheBustedUrl = SHOWS_CSV_URL + "&_=" + Date.now();
+        Papa.parse(cacheBustedUrl, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const today = new Date();
+                today.setHours(0,0,0,0);
+
+                const upcoming = results.data
+                    .map(row => ({
+                        fecha: (row.fecha || "").trim(),
+                        ciudad: (row.ciudad || "").trim(),
+                        lugar: (row.lugar || "").trim(),
+                        link: (row.link || "").trim(),
+                        dateObj: new Date((row.fecha || "").trim())
+                    }))
+                    .filter(show => show.fecha && !isNaN(show.dateObj) && show.dateObj >= today)
+                    .sort((a, b) => a.dateObj - b.dateObj);
+
+                if(upcoming.length === 0) return; // se queda el mensaje de "disponible para bookings"
+
+                const listEl = document.getElementById("showsList");
+                const emptyEl = document.getElementById("showsEmpty");
+                const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+                const monthNames = lang === 'en'
+                    ? ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+                    : ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+
+                listEl.innerHTML = upcoming.map(show => {
+                    const day = show.dateObj.getUTCDate();
+                    const month = monthNames[show.dateObj.getUTCMonth()];
+                    const linkHtml = show.link
+                        ? `<a href="${show.link.replace(/"/g,'')}" target="_blank" rel="noopener noreferrer" class="show-link">${lang === 'en' ? 'Details' : 'Detalles'}</a>`
+                        : "";
+                    return `
+                        <div class="show-card">
+                            <div class="show-date">${day} ${month}</div>
+                            <div class="show-info">
+                                <div class="show-city">${show.ciudad}</div>
+                                <div class="show-venue">${show.lugar}</div>
+                            </div>
+                            ${linkHtml}
+                        </div>`;
+                }).join("");
+
+                listEl.style.display = "block";
+                emptyEl.style.display = "none";
+            },
+            error: function() {
+                // si falla la carga, se queda el mensaje por defecto de disponibilidad
+            }
+        });
+    }
+    loadShows();
+
+    // ---------- Compartir EPK ----------
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+        const shareData = {
+            title: "TheDJSlett | Hardstyle DJ & Producer",
+            text: "Mirá el EPK oficial de TheDJSlett",
+            url: "https://alejillo8405.github.io/epk-thedjslett/"
+        };
+        if(typeof gtag === 'function') gtag('event', 'share_click');
+        if(navigator.share) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            try {
+                await navigator.clipboard.writeText(shareData.url);
+                alert("🔗 Link copiado al portapapeles");
+            } catch (e) {
+                prompt("Copiá el link:", shareData.url);
+            }
+        }
+    });
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = btn.getAttribute("data-tab");
+            tabs.forEach(t => t.classList.remove("active"));
+            buttons.forEach(b => b.classList.remove("active-btn"));
+            document.getElementById(target).classList.add("active");
+            btn.classList.add("active-btn");
+            sfxDrop.pause();
+            sfxDrop.currentTime = 0;
+            if(target === 'play') initGame();
+            loadEmbed(target);
+            if(typeof gtag === 'function') {
+                gtag('event', 'tab_view', { tab_name: target });
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    });
+
+    // Carga diferida: el iframe de Spotify/YouTube solo pide su
+    // contenido la primera vez que se abre esa pestaña.
+    function loadEmbed(target) {
+        const tab = document.getElementById(target);
+        const iframe = tab ? tab.querySelector('iframe[data-src]') : null;
+        if(iframe) {
+            iframe.src = iframe.getAttribute('data-src');
+            iframe.removeAttribute('data-src');
+        }
+    }
+
+    // Envío del formulario de booking sin salir del sitio
+    const bookingForm = document.getElementById("bookingForm");
+    const formStatus = document.getElementById("formStatus");
+    if(bookingForm) {
+        bookingForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = bookingForm.querySelector(".btn-send");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "ENVIANDO...";
+            try {
+                const response = await fetch(bookingForm.action, {
+                    method: "POST",
+                    body: new FormData(bookingForm),
+                    headers: { "Accept": "application/json" }
+                });
+                formStatus.style.display = "block";
+                if(response.ok) {
+                    formStatus.style.color = "var(--neon-lime)";
+                    formStatus.innerText = "✅ ¡Solicitud enviada! Te contactaré pronto. También podés escribirme directo por WhatsApp.";
+                    bookingForm.reset();
+                    if(typeof gtag === 'function') {
+                        gtag('event', 'booking_form_submit');
+                    }
+                } else {
+                    formStatus.style.color = "#ff5555";
+                    formStatus.innerText = "⚠️ No se pudo enviar. Probá de nuevo o escribime por WhatsApp.";
+                }
+            } catch (err) {
+                formStatus.style.display = "block";
+                formStatus.style.color = "#ff5555";
+                formStatus.innerText = "⚠️ Error de conexión. Escribime directo por WhatsApp.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "ENVIAR SOLICITUD";
+            }
+        });
+    }
+
+    document.getElementById("dropBtn").addEventListener("click", () => {
+        sfxDrop.currentTime = 0;
+        sfxDrop.play().catch(e => console.log("Audio blocked"));
+        const eq = document.getElementById("equalizer");
+        if(eq) {
+            eq.classList.add("boost");
+            setTimeout(() => eq.classList.remove("boost"), 900);
+        }
+    });
+
+    let gameActive = false;
+    let gameLoopId = null;
+    let score = 0;
+
+    // Detiene el loop de verdad al salir de la pestaña, en vez de
+    // dejarlo corriendo en segundo plano indefinidamente.
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if(btn.getAttribute("data-tab") !== 'play' && gameLoopId !== null) {
+                cancelAnimationFrame(gameLoopId);
+                gameLoopId = null;
+                gameActive = false;
+            }
+        });
+    });
+
+    function initGame() {
+        if(gameActive) return;
+        gameActive = true;
+        score = 0;
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreDisplay = document.getElementById("gameScore");
+        scoreDisplay.innerText = score.toString().padStart(3, '0');
+        let x = 200, y = 150, dx = 4, dy = 4;
+
+        canvas.onmousedown = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            
+            if (Math.sqrt((mx-x)**2 + (my-y)**2) < 25) {
+                sfxDrop.currentTime = 0; 
+                sfxDrop.play();
+                score += 10;
+                scoreDisplay.innerText = score.toString().padStart(3, '0');
+                
+                // --- AQUÍ ESTÁ LO QUE SE PERDIÓ: EL MENSAJE DE VICTORIA ---
+                if(score === 50) {
+                    alert("🔥 ¡NIVEL HARDSTYLE ALCANZADO! Eres un Pro 🔥");
+                }
+                // ---------------------------------------------------------
+
+                let speedFactor = 1.15;
+                dx = Math.max(Math.min(dx * -speedFactor, 12), -12);
+                dy = Math.max(Math.min(dy * speedFactor, 12), -12);
+            }
+        };
+
+        function loop() {
+            ctx.fillStyle = "rgba(0,0,0,0.25)";
+            ctx.fillRect(0,0,400,300);
+            x += dx; y += dy;
+            if(x < 15 || x > 385) dx *= -1;
+            if(y < 15 || y > 285) dy *= -1;
+            ctx.beginPath();
+            ctx.arc(x, y, 15, 0, Math.PI*2);
+            ctx.fillStyle = "#32ff00";
+            ctx.fill();
+            gameLoopId = requestAnimationFrame(loop);
+        }
+        loop();
+    }
+});
+</script>
+</body>
+</html>
