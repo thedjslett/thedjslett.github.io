@@ -330,6 +330,61 @@
             .achievement { flex-direction: column; align-items: center; text-align: center; }
         }
 
+        /* Unreleased tracks */
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .track-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .track-card:hover {
+            border-color: var(--neon-lime);
+            box-shadow: 0 0 15px rgba(50,255,0,0.15);
+        }
+        .track-cover {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+        }
+        .track-title {
+            color: white;
+            font-weight: bold;
+            font-size: 0.95rem;
+            line-height: 1.3;
+        }
+        .track-artist {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+        .track-player {
+            width: 100%;
+            height: 32px;
+        }
+        .track-download {
+            text-align: center;
+            background: var(--neon-lime);
+            color: black;
+            text-decoration: none;
+            padding: 9px;
+            border-radius: 5px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+        }
+
         /* WhatsApp Flotante */
         .wpp-float {
             position: fixed;
@@ -582,6 +637,7 @@
     <button data-tab="shows" data-i18n="nav.shows">Shows</button>
     <button data-tab="bio" data-i18n="nav.bio">Bio & Rider</button>
     <button data-tab="logros" data-i18n="nav.logros">Logros</button>
+    <button data-tab="unreleased" data-i18n="nav.unreleased">Unreleased</button>
     <button data-tab="contact" data-i18n="nav.contact">Contacto</button>
     <button data-tab="play" data-i18n="nav.play">Playground</button>
 </nav>
@@ -683,6 +739,138 @@
     </div>
 </div>
 
+<div id="unreleased" class="tab">
+    <div class="card">
+        <h2 data-i18n="unreleased.title">Unreleased Tracks</h2>
+        <p style="color: var(--text-gray); margin-bottom:25px;" data-i18n="unreleased.desc">
+            Remixes, mashups y edits inéditos, disponibles para descarga directa en alta calidad. Uso libre para sets, siempre dando crédito.
+        </p>
+        <div class="track-grid">
+            <div class="track-card">
+                <img src="tracks/covers/sexy-time.jpg" alt="Sexy Time (TheDJSlett Remix)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Sexy Time (TheDJSlett Remix)</div>
+                    <div class="track-artist">GPF</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/sexy-time.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/sexy-time.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Sexy Time (TheDJSlett Remix)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/data.jpg" alt="Data (TheDJSlett Hardstyle Bootleg)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Data (TheDJSlett Hardstyle Bootleg)</div>
+                    <div class="track-artist">Hatsune Miku</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/data.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/data.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Data (TheDJSlett Hardstyle Bootleg)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/listen-to-your-heart.jpg" alt="Listen To Your Heart (TheDJSlett Bootleg)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Listen To Your Heart (TheDJSlett Bootleg)</div>
+                    <div class="track-artist">K-391, Mangoo, Derek Cate, B3nte</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/listen-to-your-heart.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/listen-to-your-heart.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Listen To Your Heart (TheDJSlett Bootleg)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/nobody.jpg" alt="Nobody (TheDJSlett Kick Edit)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Nobody (TheDJSlett Kick Edit)</div>
+                    <div class="track-artist">Klara Hammarström</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/nobody.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/nobody.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Nobody (TheDJSlett Kick Edit)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/bang-my-mind.jpg" alt="Bang My Mind (TheDJSlett Mashup)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Bang My Mind (TheDJSlett Mashup)</div>
+                    <div class="track-artist">Klara Hammarström & Rasmus Gozzi Vs Brennan Heart, Wildstylez & Sub Zero Project</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/bang-my-mind.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/bang-my-mind.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Bang My Mind (TheDJSlett Mashup)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/lemon-tree.jpg" alt="Lemon Tree (TheDJSlett Edit)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Lemon Tree (TheDJSlett Edit)</div>
+                    <div class="track-artist">Fool's Garden</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/lemon-tree.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/lemon-tree.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Lemon Tree (TheDJSlett Edit)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/europlayncer.jpg" alt="EuroPlayncer (TheDJSlett Mashup/Edit)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">EuroPlayncer (TheDJSlett Mashup/Edit)</div>
+                    <div class="track-artist">Mangoo & Dimatik Vs K-391 & Alan Walker & Martin Tungevaag & Mangoo</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/europlayncer.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/europlayncer.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'EuroPlayncer (TheDJSlett Mashup/Edit)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/pepas.jpg" alt="Pepas (TheDJSlett Remix)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Pepas (TheDJSlett Remix)</div>
+                    <div class="track-artist">Farruko</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/pepas.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/pepas.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Pepas (TheDJSlett Remix)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/samba-do-brasil.jpg" alt="Samba do Brasil x Samba de Janeiro (TheDJSlett Hardstyle Mashup)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Samba do Brasil x Samba de Janeiro (TheDJSlett Hardstyle Mashup)</div>
+                    <div class="track-artist">Bellini</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/samba-do-brasil.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/samba-do-brasil.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Samba do Brasil x Samba de Janeiro (TheDJSlett Hardstyle Mashup)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/swich.jpg" alt="Swich (TheDJSlett Kick Edit)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Swich (TheDJSlett Kick Edit)</div>
+                    <div class="track-artist">Darren Styles</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/swich.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/swich.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Swich (TheDJSlett Kick Edit)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+            <div class="track-card">
+                <img src="tracks/covers/bloody-mary.jpg" alt="Bloody Mary (TheDJSlett Rawstyle Mix)" class="track-cover" loading="lazy">
+                <div class="track-info">
+                    <div class="track-title">Bloody Mary (TheDJSlett Rawstyle Mix)</div>
+                    <div class="track-artist">TheDJSlett</div>
+                    <audio controls preload="none" class="track-player">
+                        <source src="tracks/audio/bloody-mary.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <a href="tracks/audio/bloody-mary.mp3" download class="track-download" onclick="if(typeof gtag==='function'){gtag('event','track_download',{track_name:'Bloody Mary (TheDJSlett Rawstyle Mix)'});}" data-i18n="unreleased.download">Descargar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="contact" class="tab">
 
     <div class="card">
@@ -753,6 +941,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "nav.shows": "Shows",
             "nav.bio": "Bio & Rider",
             "nav.logros": "Achievements",
+            "nav.unreleased": "Unreleased",
             "nav.contact": "Contact",
             "nav.play": "Playground",
             "shows.title": "Upcoming Dates",
@@ -783,6 +972,9 @@ document.addEventListener("DOMContentLoaded", function() {
             "logros.remix.quote": "\"One of the remixes with the best musical judgment in the contest. Consistent sound design, above the contest average.\"",
             "logros.cantera.title": "La Cantera — Mentorship with Bullnene and the Envigado City Government",
             "logros.cantera.desc": "I took part in La Cantera, the social and musical project by producer René \"Bullnene\" Cano (J Balvin, Karol G, Maluma, Manuel Turizo, Juanes) together with the Envigado city government, aimed at discovering and training new musical talent from the municipality. While I didn't make the contest's official album, I received direct mentorship from leading names in the region's music industry.",
+            "unreleased.title": "Unreleased Tracks",
+            "unreleased.desc": "Unreleased remixes, mashups and edits, available for direct high-quality download. Free to use in sets, credit always appreciated.",
+            "unreleased.download": "Download",
             "contact.name": "Name / Promoter",
             "contact.email": "Contact Email",
             "contact.message": "Message / Event Details",
