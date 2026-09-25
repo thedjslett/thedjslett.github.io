@@ -385,6 +385,56 @@
             letter-spacing: 0.5px;
         }
 
+        /* Pre-save proximo lanzamiento */
+        .presave-cover {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--neon-lime);
+            box-shadow: 0 0 25px rgba(50,255,0,0.3);
+            margin: 15px auto;
+            display: block;
+        }
+        .presave-track-title {
+            color: white;
+            font-weight: 900;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        .presave-track-artist {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .presave-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .presave-countdown .unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 55px;
+        }
+        .presave-countdown .num {
+            font-family: monospace;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--neon-lime);
+            line-height: 1;
+        }
+        .presave-countdown .label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
         /* WhatsApp Flotante */
         .wpp-float {
             position: fixed;
@@ -654,6 +704,14 @@
 </div>
 
 <div id="music" class="tab">
+    <div id="presaveCard" class="card" style="display:none; margin-bottom:20px; text-align:center;">
+        <h2 data-i18n="presave.title">Próximo Lanzamiento</h2>
+        <img id="presaveCover" src="" alt="" class="presave-cover">
+        <div id="presaveTrackTitle" class="presave-track-title"></div>
+        <div id="presaveTrackArtist" class="presave-track-artist"></div>
+        <div id="presaveCountdown" class="presave-countdown"></div>
+        <a id="presaveBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-booking" style="display:inline-block; text-decoration:none; margin-top:15px;" data-i18n="presave.btn">PRE-SAVE</a>
+    </div>
     <div class="card">
         <h2 data-i18n="music.title">Discografía Oficial</h2>
         <iframe data-testid="embed-iframe" style="border-radius:12px" data-src="https://open.spotify.com/embed/artist/2dsFFDlP0HN09zODqQqfem?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -975,6 +1033,8 @@ document.addEventListener("DOMContentLoaded", function() {
             "unreleased.title": "Unreleased Tracks",
             "unreleased.desc": "Unreleased remixes, mashups and edits, available for direct high-quality download. Free to use in sets, credit always appreciated.",
             "unreleased.download": "Download",
+            "presave.title": "Next Release",
+            "presave.btn": "PRE-SAVE",
             "contact.name": "Name / Promoter",
             "contact.email": "Contact Email",
             "contact.message": "Message / Event Details",
@@ -1001,6 +1061,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gtag('event', 'language_change', { language: lang });
         }
         loadShows();
+        renderCountdown();
     }
 
     document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
@@ -1069,6 +1130,84 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     loadShows();
+
+    // ---------- Próximo Lanzamiento / Pre-Save (Google Sheet publicada como CSV) ----------
+    const PRESAVE_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRKZLpBr-_wL6Qy_-Fl_YLlideaVs_wH1E9R7J_-82JEu0avzfyAriVOmKSyjZhJFvUSjtM2_PlMZjb/pub?gid=0&single=true&output=csv";
+    let presaveInterval = null;
+    let presaveTargetDate = null;
+
+    function renderCountdown() {
+        const el = document.getElementById("presaveCountdown");
+        if(!el || !presaveTargetDate) return;
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+        const labels = lang === 'en'
+            ? { d: "Days", h: "Hrs", m: "Min", s: "Sec", live: "🔥 Out now!" }
+            : { d: "Días", h: "Hs", m: "Min", s: "Seg", live: "🔥 ¡Ya disponible!" };
+
+        const diff = presaveTargetDate.getTime() - Date.now();
+        if(diff <= 0) {
+            el.innerHTML = `<div class="unit"><div class="num">${labels.live}</div></div>`;
+            if(presaveInterval) clearInterval(presaveInterval);
+            return;
+        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+
+        el.innerHTML = `
+            <div class="unit"><div class="num">${days}</div><div class="label">${labels.d}</div></div>
+            <div class="unit"><div class="num">${String(hours).padStart(2,'0')}</div><div class="label">${labels.h}</div></div>
+            <div class="unit"><div class="num">${String(mins).padStart(2,'0')}</div><div class="label">${labels.m}</div></div>
+            <div class="unit"><div class="num">${String(secs).padStart(2,'0')}</div><div class="label">${labels.s}</div></div>
+        `;
+    }
+
+    function loadPresave() {
+        if(typeof Papa === 'undefined') return;
+        const cacheBustedUrl = PRESAVE_CSV_URL + "&_=" + Date.now();
+        Papa.parse(cacheBustedUrl, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const row = results.data[0];
+                if(!row) return;
+                const titulo = (row.titulo || "").trim();
+                const artista = (row.artista || "").trim();
+                const portada = (row.portada || "").trim();
+                const fecha = (row.fecha || "").trim();
+                const link = (row.link_presave || "").trim();
+                const dateObj = new Date(fecha);
+
+                if(!titulo || !fecha || !link || isNaN(dateObj)) return;
+
+                presaveTargetDate = dateObj;
+
+                document.getElementById("presaveTrackTitle").textContent = titulo;
+                document.getElementById("presaveTrackArtist").textContent = artista;
+                document.getElementById("presaveBtn").href = link;
+                if(portada) {
+                    const img = document.getElementById("presaveCover");
+                    img.src = portada;
+                    img.alt = titulo;
+                    img.style.display = "block";
+                } else {
+                    document.getElementById("presaveCover").style.display = "none";
+                }
+
+                document.getElementById("presaveCard").style.display = "block";
+
+                if(presaveInterval) clearInterval(presaveInterval);
+                renderCountdown();
+                presaveInterval = setInterval(renderCountdown, 1000);
+            },
+            error: function() {
+                // si falla la carga, la tarjeta simplemente no aparece
+            }
+        });
+    }
+    loadPresave();
 
     // ---------- Compartir EPK ----------
     document.getElementById("shareBtn").addEventListener("click", async () => {
