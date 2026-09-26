@@ -710,7 +710,7 @@
         <div id="presaveTrackTitle" class="presave-track-title"></div>
         <div id="presaveTrackArtist" class="presave-track-artist"></div>
         <div id="presaveCountdown" class="presave-countdown"></div>
-        <a id="presaveBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-booking" style="display:inline-block; text-decoration:none; margin-top:15px;" data-i18n="presave.btn">PRE-SAVE</a>
+        <a id="presaveBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-booking" style="display:inline-block; text-decoration:none; margin-top:15px;">PRE-SAVE</a>
     </div>
     <div class="card">
         <h2 data-i18n="music.title">Discografía Oficial</h2>
@@ -916,7 +916,6 @@ document.addEventListener("DOMContentLoaded", function() {
             "unreleased.download": "Download",
             "unreleased.empty": "No tracks uploaded yet. Check back soon!",
             "presave.title": "Next Release",
-            "presave.btn": "PRE-SAVE",
             "contact.name": "Name / Promoter",
             "contact.email": "Contact Email",
             "contact.message": "Message / Event Details",
@@ -944,6 +943,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         loadShows();
         renderCountdown();
+        setPresaveButtonLabel();
         loadUnreleased();
     }
 
@@ -1018,6 +1018,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const PRESAVE_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRKZLpBr-_wL6Qy_-Fl_YLlideaVs_wH1E9R7J_-82JEu0avzfyAriVOmKSyjZhJFvUSjtM2_PlMZjb/pub?gid=0&single=true&output=csv";
     let presaveInterval = null;
     let presaveTargetDate = null;
+    let presaveIsPast = false;
+
+    function setPresaveButtonLabel() {
+        const btn = document.getElementById("presaveBtn");
+        if(!btn) return;
+        const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
+        if(presaveIsPast) {
+            btn.textContent = lang === 'en' ? 'LISTEN NOW' : 'ESCUCHALA';
+        } else {
+            btn.textContent = 'PRE-SAVE';
+        }
+    }
 
     function renderCountdown() {
         const el = document.getElementById("presaveCountdown");
@@ -1030,6 +1042,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const diff = presaveTargetDate.getTime() - Date.now();
         if(diff <= 0) {
             el.innerHTML = `<div class="unit"><div class="num">${labels.live}</div></div>`;
+            if(!presaveIsPast) {
+                presaveIsPast = true;
+                setPresaveButtonLabel();
+            }
             if(presaveInterval) clearInterval(presaveInterval);
             return;
         }
@@ -1054,26 +1070,38 @@ document.addEventListener("DOMContentLoaded", function() {
             header: true,
             skipEmptyLines: true,
             complete: function(results) {
-                const row = results.data[0];
-                if(!row) return;
-                const titulo = (row.titulo || "").trim();
-                const artista = (row.artista || "").trim();
-                const portada = (row.portada || "").trim();
-                const fecha = (row.fecha || "").trim();
-                const link = (row.link_presave || "").trim();
-                const dateObj = new Date(fecha);
+                const now = Date.now();
+                const rows = results.data
+                    .map(row => ({
+                        titulo: (row.titulo || "").trim(),
+                        artista: (row.artista || "").trim(),
+                        portada: (row.portada || "").trim(),
+                        link: (row.link_presave || "").trim(),
+                        dateObj: new Date((row.fecha || "").trim())
+                    }))
+                    .filter(r => r.titulo && r.link && !isNaN(r.dateObj));
 
-                if(!titulo || !fecha || !link || isNaN(dateObj)) return;
+                if(rows.length === 0) return;
 
-                presaveTargetDate = dateObj;
+                const future = rows.filter(r => r.dateObj.getTime() > now)
+                                    .sort((a, b) => a.dateObj - b.dateObj);
+                const past = rows.filter(r => r.dateObj.getTime() <= now)
+                                  .sort((a, b) => b.dateObj - a.dateObj);
 
-                document.getElementById("presaveTrackTitle").textContent = titulo;
-                document.getElementById("presaveTrackArtist").textContent = artista;
-                document.getElementById("presaveBtn").href = link;
-                if(portada) {
+                const chosen = future.length ? future[0] : past[0];
+                if(!chosen) return;
+
+                presaveTargetDate = chosen.dateObj;
+                presaveIsPast = future.length === 0;
+
+                document.getElementById("presaveTrackTitle").textContent = chosen.titulo;
+                document.getElementById("presaveTrackArtist").textContent = chosen.artista;
+                document.getElementById("presaveBtn").href = chosen.link;
+                setPresaveButtonLabel();
+                if(chosen.portada) {
                     const img = document.getElementById("presaveCover");
-                    img.src = portada;
-                    img.alt = titulo;
+                    img.src = chosen.portada;
+                    img.alt = chosen.titulo;
                     img.style.display = "block";
                 } else {
                     document.getElementById("presaveCover").style.display = "none";
