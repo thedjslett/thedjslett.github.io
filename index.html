@@ -705,7 +705,7 @@
 
 <div id="music" class="tab">
     <div id="presaveCard" class="card" style="display:none; margin-bottom:20px; text-align:center;">
-        <h2 data-i18n="presave.title">Próximo Lanzamiento</h2>
+        <h2 id="presaveTitle">Próximo Lanzamiento</h2>
         <img id="presaveCover" src="" alt="" class="presave-cover">
         <div id="presaveTrackTitle" class="presave-track-title"></div>
         <div id="presaveTrackArtist" class="presave-track-artist"></div>
@@ -915,7 +915,6 @@ document.addEventListener("DOMContentLoaded", function() {
             "unreleased.desc": "Unreleased remixes, mashups and edits, available for direct high-quality download. Free to use in sets, credit always appreciated.",
             "unreleased.download": "Download",
             "unreleased.empty": "No tracks uploaded yet. Check back soon!",
-            "presave.title": "Next Release",
             "contact.name": "Name / Promoter",
             "contact.email": "Contact Email",
             "contact.message": "Message / Event Details",
@@ -1022,12 +1021,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setPresaveButtonLabel() {
         const btn = document.getElementById("presaveBtn");
-        if(!btn) return;
+        const titleEl = document.getElementById("presaveTitle");
         const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
-        if(presaveIsPast) {
-            btn.textContent = lang === 'en' ? 'LISTEN NOW' : 'ESCUCHALA';
-        } else {
-            btn.textContent = 'PRE-SAVE';
+        if(btn) {
+            if(presaveIsPast) {
+                btn.textContent = lang === 'en' ? 'LISTEN NOW' : 'ESCUCHALA';
+            } else {
+                btn.textContent = 'PRE-SAVE';
+            }
+        }
+        if(titleEl) {
+            if(presaveIsPast) {
+                titleEl.textContent = lang === 'en' ? 'Latest Release' : 'Último Lanzamiento';
+            } else {
+                titleEl.textContent = lang === 'en' ? 'Next Release' : 'Próximo Lanzamiento';
+            }
         }
     }
 
